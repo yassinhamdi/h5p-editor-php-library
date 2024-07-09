@@ -1320,6 +1320,9 @@ a {
     clear: right;
   }
 
+  .h5p-add-dialog .h5p-add-dialog-table .h5p-dialog-box {
+    text-align: right;
+  }
   /* h5p-editing-image-popup */
   .h5p-editing-image-header-buttons {
     float: left;
@@ -1357,6 +1360,9 @@ a {
       margin-left: 1.8em;
       left: 0;
       right: auto;
+    }
+    .h5p-hub-client-drop-down .icon-hub-icon:before {
+      margin-left: 1em;
     }
     .tab-panel [role=tab]>a:before {
       margin-left: 0.833em;
@@ -1643,6 +1649,7 @@ a {
   /* Interactive Video*/
   .h5p-interactive-video .h5p-controls{
     direction: ltr;
+    text-align: start;
   }
   .h5peditor-guided-tour{
     left: 1em;
