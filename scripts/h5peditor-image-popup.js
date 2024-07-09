@@ -25,6 +25,8 @@ H5PEditor.ImageEditingPopup = (function ($, EventDispatcher) {
 
     var popup = document.createElement('div');
     popup.className = 'h5p-editing-image-popup';
+    const language = window.H5PEditor.contentLanguage
+    if(language && language == 'ar') popup.classList.add('h5peditor-rtl');
     background.appendChild(popup);
 
     var header = document.createElement('div');

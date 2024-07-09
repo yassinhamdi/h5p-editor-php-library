@@ -67,6 +67,8 @@ ns.Editor = function (library, defaultParams, replace, iframeLoaded) {
     }
     const language = metadata && metadata.defaultLanguage
       ? metadata.defaultLanguage : ns.contentLanguage;
+    const editorLanguage = metadata && metadata.language ? metadata.language : ns.contentLanguage
+    const editorClassName = editorLanguage == 'ar' ? "h5p-editor h5peditor h5peditor-rtl" : "h5p-editor h5peditor";
     iframe.contentDocument.open();
     iframe.contentDocument.write(
       '<!doctype html><html lang="' + language + '">' +
@@ -74,7 +76,7 @@ ns.Editor = function (library, defaultParams, replace, iframeLoaded) {
       ns.wrap('<link rel="stylesheet" href="', ns.assets.css, '">') +
       ns.wrap('<script src="', ns.assets.js, '"></script>') +
       '</head><body>' +
-      '<div class="h5p-editor h5peditor">' + ns.t('core', 'loading') + '</div>' +
+      '<div class="'+editorClassName+'">' + ns.t('core', 'loading') + '</div>' +
       '</body></html>');
     iframe.contentDocument.close();
     iframe.contentDocument.documentElement.style.overflow = 'hidden';

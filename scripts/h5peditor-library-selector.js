@@ -65,7 +65,7 @@ ns.LibrarySelector = function (libraries, defaultLibrary, defaultParams) {
    */
   var librarySelectHandler = function (library) {
     that.currentLibrary = library.uberName;
-    that.loadSemantics(library.uberName, that.selector.getParams(), that.selector.getMetadata());
+    that.loadSemantics(library.uberName, that.selector.getParams(), that.selector.getMetadata(),that.defaultParams);
 
     that.$tutorialUrl.attr('href', library.tutorialUrl ? library.tutorialUrl : '#').toggle(!!library.tutorialUrl);
     that.$exampleUrl.attr('href', library.exampleUrl ? library.exampleUrl : '#').toggle(!!library.exampleUrl);
@@ -226,9 +226,11 @@ ns.LibrarySelector.prototype.pasteContent = function () {
  * @param {Object} params Pass in params to semantics
  * @returns {unresolved}
  */
-ns.LibrarySelector.prototype.loadSemantics = function (library, params, metadata) {
+ns.LibrarySelector.prototype.loadSemantics = function (library, params, metadata,defaultParams) {
   var that = this;
-
+  // Get Editor Language from metadata or NS
+  const language = defaultParams && defaultParams.metadata && defaultParams.metadata.language
+  ? defaultParams.metadata.language : ns.contentLanguage;
   if (this.form !== undefined) {
     // Remove old form.
     this.form.remove();
@@ -239,8 +241,11 @@ ns.LibrarySelector.prototype.loadSemantics = function (library, params, metadata
     this.$parent.attr('class', 'h5peditor');
     return;
   }
-  this.$parent.attr('class', 'h5peditor ' + library.split(' ')[0].toLowerCase().replace('.', '-') + '-editor');
-
+  if(language == 'ar'){
+    this.$parent.attr('class', 'h5peditor h5peditor-rtl h5p-dir-rtl ' + library.split(' ')[0].toLowerCase().replace('.', '-') + '-editor');
+  }else{
+    this.$parent.attr('class', 'h5peditor ' + library.split(' ')[0].toLowerCase().replace('.', '-') + '-editor');
+  }
   // Display loading message
   var $loading = ns.$('<div class="h5peditor-loading h5p-throbber">' + ns.t('core', 'loading') + '</div>').appendTo(this.$parent);
 
